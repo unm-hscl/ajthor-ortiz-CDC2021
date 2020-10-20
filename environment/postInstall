@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+set -e
+
+### Install GMP
+# Requires packages build-essentials for gcc and make, and package m4 (don't know why)
+curl -sL https://gmplib.org/download/gmp/gmp-6.1.2.tar.bz2 | tar xj
+echo 'Downloaded GMP'
+cd gmp-6.1.2
+# Setup gmp
+./configure
+make
+make install
+cd ..
+echo 'Installed GMP'
+
+### GeoCalcLib (Download and setup)
+# Requires installation of gmp and packages build-essentials for gcc and make
+curl -sL https://github.com/worc4021/GeoCalcLib/archive/master.zip --output GeoCalcLib.zip
+unzip -qq GeoCalcLib.zip
+mv GeoCalcLib-master GeoCalcLib
+rm GeoCalcLib.zip
+echo 'Downloaded GeoCalcLib'
+# Setup GeoCalcLib
+cd GeoCalcLib
+mkdir mexfiles
+echo 'MATLABROOT = /MATLAB' > User.make
+echo 'INSTALLDIR = /GeoCalcLib/mexfiles' >> User.make
+make
+cd ..
+echo 'Installed GeoCalcLib'
+
+### YALMIP (Download only)
+# MATLAB simply adds the files to the path to complete the setup
+YALMIP_RELEASE=R20181012
+curl -sL https://github.com/yalmip/YALMIP/archive/$YALMIP_RELEASE.tar.gz | tar xz
+mv YALMIP-$YALMIP_RELEASE YALMIP
+echo 'Downloaded YALMIP'
+
+### CVX (Download only)
+# We call cvx_setup in MATLAB to complete the setup
+curl -sL http://web.cvxr.com/cvx/cvx-a64.tar.gz | tar zx
+echo 'Downloaded CVX'
+
+### SReachTools (Download only)
+# Call srtinit in MATLAB to complete the setup
+## OPTION 1: Fetch a tagged release
+#
+SREACHTOOLS_RELEASE=1.2
+curl -sL https://github.com/unm-hscl/SReachTools/archive/v$SREACHTOOLS_RELEASE.zip --output SReachTools.zip
+unzip -qq SReachTools.zip
+mv SReachTools-$SREACHTOOLS_RELEASE SReachTools
+rm SReachTools.zip
+echo 'Downloaded SReachTools'
+#
+# ## OPTION 2: Fetch bleeding edge
+#
+# curl -sL https://github.com/unm-hscl/SReachTools/archive/master.zip --output SReachTools.zip
+# unzip -qq SReachTools.zip
+# mv SReachTools-master SReachTools
+# rm SReachTools.zip
+# echo 'Downloaded SReachTools'
+
+### Setup MATLAB env for GeoCalcLib, YALMIP, CVX, MPT3, and SReachTools
+# Trailing \ implies newline in bash. MATLAB executes the commands in the quotes.
+# Make sure each line ends with ;\ to avoid MATLAB throwing errors
+# Use GPLK instead of LCP to avoid wierd shifting | Don't do mpt_init again
+# 1. Add GeoCalcLib to path
+# 2. Add YALMIP to the path
+# 3. Setup CVX
+# 4. Fetch and install MPT3 using tbxmanager; Initialize MPT3
+# 5. Setup SReachTools
+# Even though, we do not recommend using savepath, we have to do it here due to
+# CodeOcean's setup
+matlab -nodisplay -r "\
+addpath('/GeoCalcLib/mexfiles');\
+disp('Installed GeoCalcLib');\
+addpath(genpath('/YALMIP'));\
+disp('Installed YALMIP');\
+cd('/cvx');\
+evalc('cvx_setup()');\
+disp('Installed CVX (Standard bundle)');\
+mkdir('/tbxmanager');\
+cd('/tbxmanager');\
+urlwrite('http://www.tbxmanager.com/tbxmanager.m', 'tbxmanager.m');\
+a=evalc('tbxmanager');\
+disp('Installed tbxmanager');\
+evalc('tbxmanager install mpt mptdoc cddmex fourier glpkmex hysdel lcp sedumi espresso');\
+evalc('mpt_init');\
+a=mptopt('lpsolver','glpk','qpsolver','quadprog');\
+disp('Installed MPT3');\
+cd('/SReachTools');\
+srtinit;\
+disp('Installed SReachTools');\
+savepath;"

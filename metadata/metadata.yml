@@ -1,0 +1,23 @@
+metadata_version: 1
+name: 'Repeatability module for SReachTools Kernel Module'
+description: "We provide SReachTools code base used for \"ARCH 2020 Category Report: Stochastic Models\" repeatability evaluation. We tested SReachTools on three different benchmarks --- automated anesthesia delivery system, building automation system, and chain of integrators. \n\nWe obtain the table (similar to the one reported in ARCH 2020) using the script `/code/parseMatfilesResults.m` (executed automatically by `/code/runall.m`). We store the table in `/results/table.csv`, and also plot the underapproximative reach sets for the automated anesthesia delivery system and the building automation system (Case 1). For more details, see https://github.com/sreachtools/."
+tags:
+- stochastic-verification
+- stochastic-reachability
+- sreachtools
+- safety
+- MATLAB
+- stochastic-optimal-control
+authors:
+- name: Adam J. Thorpe
+  affiliations:
+  - name: University of New Mexico
+- name: Kendric R. Ortiz
+  affiliations:
+  - name: University of New Mexico
+- name: Meeko M. K. Oishi
+  affiliations:
+  - name: University of New Mexico
+corresponding_contributor:
+  name: Adam Thorpe
+  email: ajthor@unm.edu
