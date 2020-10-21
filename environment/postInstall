@@ -3,9 +3,9 @@ set -e
 
 ### YALMIP
 #
-YALMIP_RELEASE=R20181012
-curl -sL https://github.com/yalmip/YALMIP/archive/$YALMIP_RELEASE.tar.gz | tar xz
-mv YALMIP-$YALMIP_RELEASE YALMIP
+YALMIP_VER=R20181012
+curl -sL https://github.com/yalmip/YALMIP/archive/$YALMIP_VER.tar.gz | tar xz
+mv YALMIP-$YALMIP_VER YALMIP
 echo 'Downloaded YALMIP'
 
 ### CVX
