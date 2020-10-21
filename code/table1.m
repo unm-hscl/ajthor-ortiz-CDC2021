@@ -1,4 +1,4 @@
-%% Run the performance tests.
+%% Generate Table 1
 % Note that the 'ParticleOpen' and 'VoronoiOpen' algorithms are omitted,
 % since they require a working Gurobi license.
 %
@@ -26,5 +26,6 @@ results = varfun(@mean, fullTable, ...
 
 disp(results);
 
+% Save the table as 'table1'.
 results = removevars(results, {'GroupCount'});
 writetable(results, '../results/table1.txt');

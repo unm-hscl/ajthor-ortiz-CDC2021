@@ -3,6 +3,10 @@
 % "SReachTools Kernel Module: Data-Driven Stochastic Reachability Using Hilbert
 % Space Embeddings of Distributions"
 %
+% This script is the entrypoint for the repeatability code. Run this script in
+% Matlab to generate all figures and tables. Results are stored in the 'results'
+% folder.
+%
 %% Generate figure 2 in the paper.
 %
 disp('Generating figure2.')

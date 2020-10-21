@@ -1,7 +1,7 @@
-%% Kernel Embeddings Computation Time
+%% Generate Figure 2
 % Kernel embeddings computation time for a double integrator system.
 %
-% NOTE: The computation times are obtained using Matlab's performance testing
+% The computation times are obtained using Matlab's performance testing
 % framework. The algorithms are written as unit tests, and the performance
 % testing framework runs the tests 4 times to warm up the machine and then
 % between 4 and 256 times to reach a sample mean with a 0.05 relative margin of
@@ -47,4 +47,5 @@ yticks([0, 0.2, 0.4, 0.6, 0.8])
 xlim([100 2500]);
 hold off
 
-saveas(gcf, '../results/figure2.png')
+% Save the figure as 'figure2'.
+saveas(gcf, '../results/figure2.eps')
