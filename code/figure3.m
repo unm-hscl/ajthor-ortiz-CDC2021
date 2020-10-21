@@ -145,7 +145,3 @@ ax5.YLabel.Interpreter = 'latex';
 ax5.YLabel.String = '$x_{2}$';
 ax5.Title.String = '(e)';
 set(ax5, 'FontSize', 8, 'Fontweight', 'bold');
-
-=======
-saveas(gcf, '../results/figure3.png')
->>>>>>> c38c60d6b3ed23556a4412bd36cc4439a91bcba6
