@@ -74,7 +74,7 @@ also run in any newer version of Matlab.
 
 ### Repeatability Instructions
 
-The main entry points for the code are located in the rood directory and are
+The main entry points for the code are located in the root directory and are
 labeled `run_unit_tests.m` and `run_perf_tests.m`. These scripts run the unit
 tests and performance tests for the code and should serve as the main
 repeatability files.
