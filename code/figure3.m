@@ -63,4 +63,4 @@ surf(s, s, reshape(results.Pr(1, :), 100, 100), 'EdgeColor', 'none');
 
 view([0 90]);
 
-saveas(gcf, '../results/KernelEmbeddings.png')
+saveas(gcf, '../results/figure3.png')
