@@ -48,4 +48,4 @@ xlim([100 2500]);
 hold off
 
 % Save the figure as 'figure2'.
-saveas(gcf, '../results/figure2.eps')
+saveas(gcf, '../results/figure2.png')
