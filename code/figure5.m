@@ -1,6 +1,6 @@
 %% Kernel Embeddings Example (Terminal-Hitting Time Problem)
 % Kernel embeddings example showing the Terminal-hitting time problem
-% for a Linear(Sys1) and Nonlinear(Sys2) Cart-Pole System 
+% for a Linear(Sys1) and Nonlinear(Sys2) Cart-Pole System
 %
 %%
 % Specify the time horizon, the safe set $\mathcal{K}$, and the target set
@@ -25,8 +25,8 @@ problem2 = srt.problems.TerminalHitting('ConstraintTube', K2, 'TargetTube', T2);
 %% System Definition
 % Generate input/output samples for a linear cart-pole system
 %
-% Load Linear cart-pole data. 
-load('.\data\CartPoleSamples_Linearized.mat');
+% Load Linear cart-pole data.
+load('../data/CartPoleSamples_Linearized.mat');
 
 % Select 5000 samples from the data.
 indices = randperm(size(X, 2), 5000);
@@ -34,8 +34,8 @@ X1 = X(:, indices);
 Y1 = Y(:, indices);
 U1 = zeros(1, size(X1, 2));
 
-% Load Nonlinear cart-pole data. 
-load('.\data\CartPoleSamples_Nonlinear.mat');
+% Load Nonlinear cart-pole data.
+load('../data/CartPoleSamples_Nonlinear.mat');
 
 % Select 5000 samples from the data for Nonlinear system.
 indices = randperm(size(X, 2), 5000);
@@ -120,7 +120,7 @@ ax3.Units = 'points';
 data = reshape(results2.Pr(N2-1, :), 100, 100);
 ph = surf(ax3, s, s, data);
 ph.EdgeColor = 'none';
-caxis([0 1]); 
+caxis([0 1]);
 view(3);
 ax3.Color = 'none';
 
@@ -138,7 +138,7 @@ ax4.Units = 'points';
 data = reshape(results2.Pr(N2-1, :), 100, 100);
 ph = surf(ax4, s, s, data);
 ph.EdgeColor = 'none';
-caxis([0 1]); 
+caxis([0 1]);
 view(2);
 ax4.Color = 'none';
 
@@ -151,3 +151,5 @@ ax4.YLabel.String = '$\dot{\theta}$';
 ax4.Title.String = '(d)';
 set(ax4, 'FontSize', 8, 'Fontweight', 'bold');
 
+% Save the figure as 'figure5'.
+saveas(gcf, '../results/figure5.png')
