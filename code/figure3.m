@@ -37,7 +37,7 @@ B = [0.03125; 0.25];
 Y = A*X + B*U + W;
 
 % Load the dynamic programming results for the comparison plots.
-load('.\data\DynamicProgrammingFHT.mat')
+load('../data/DynamicProgrammingFHT.mat')
 
 
 %%
@@ -143,3 +143,7 @@ ax5.YLabel.Interpreter = 'latex';
 ax5.YLabel.String = '$x_{2}$';
 ax5.Title.String = '(e)';
 set(ax5, 'FontSize', 8, 'Fontweight', 'bold');
+
+
+% Save the figure as 'figure3'.
+saveas(gcf, '../results/figure3.png')
