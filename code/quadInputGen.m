@@ -28,7 +28,6 @@ sysd = c2d(sys,Ts);
 A = sysd.A;
 B = sysd.B;
          
-
 Q = 10*eye(size(A,2)*N);
 R = 1*eye(size(B,2)*N);
 X_d = repmat(x_d,[N 1]); 
@@ -37,7 +36,6 @@ cvx_begin
 
 variable X(size(A,2)*N,)
 variable U(size(B,2)*N,)
-
 
 minimize((X-X_d)'*Q*(X-X_d) + U'*R*U)
 

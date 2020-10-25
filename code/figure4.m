@@ -96,12 +96,9 @@ s = linspace(-1, 1, 100);
 Xt = sampleunif(s, s);
 Ut = zeros(1, size(Xt, 2));
 
-% Compute the safety probabilities.
 resultsGuass = SReachPoint(problem, alg, sys1, Xt, Ut);
 
-% % Compute the safety probabilities.
 resultsBeta = SReachPoint(problem, alg, sys2, Xt, Ut);
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%

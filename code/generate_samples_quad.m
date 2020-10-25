@@ -19,10 +19,7 @@ Umin = params.Umin;
 Umax = params.Umax;
 disturb = params.disturb; 
 
-% el  = [10, 2, 10, 2, 4, 2]; 
 el = params.el;
-
-
 
 fprintf('Number of elements: %d\n', prod(el));
 
