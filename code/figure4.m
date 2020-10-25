@@ -7,8 +7,8 @@
 % $\mathcal{T}$.
 
 N = 5;
-K = srt.Tube(N,Ployhedron('1b', [-1 -100 0 -100 -100 -100], 'ub', [1 100 0.8 100 100 100]));
-T = srt.Tube(N,Ployhedron('1b', [-1 -100 -100 -100 -100 -100], 'ub', [1 100 0.8 100 100 100]));
+K = srt.Tube(N, Polyhedron('1b', [-1 -100 0 -100 -100 -100], 'ub', [1 100 0.8 100 100 100]));
+T = srt.Tube(N, Polyhedron('1b', [-1 -100 -100 -100 -100 -100], 'ub', [1 100 0.8 100 100 100]));
 
 problem = srt.problems.FirstHitting('ConstraintTube', K, 'TargetTube', T);
 
@@ -52,20 +52,27 @@ T = reshape(TT, 1, []);
 dT = reshape(dTdT, 1, []);
 
 Xs = [X; dX; Y; dY; T; dT];
+
+Q = 10*eye(size(A,2)*N);
+R = 10*eye(size(B,2)*N);
+K = [   -0.3370   -0.6738    0.6396    1.8992    4.9544    2.0982;
+         0.3370    0.6738    0.6396    1.8992   -4.9544   -2.0982;];
+U = K*(x0-x_d);
+
 for k = 1:size(Xs,2)
     Us(:,k) = quadInputGen(60,Ts,Xs(:,k),X_d);
 end
 
 Us2 = 0.01*Us(1:2,:);
 Ys = generate_output_samples_quad(Xs,Us2,Ts,1);
-
 args1 = {[6 1], 'X', Xs, 'U', Us2, 'Y', Ys};
-samplesWithGaussianDisturbance = SystemSamples(args1{:});
+
+sys1 = srt.systems.SampledSystem('X', Xs, 'U', Us2, 'Y', Ys);
 
 Ys = generate_output_samples_quad(Xs,Us2,Ts,2);
-
 args2 = {[6 1], 'X', Xs, 'U', Us2, 'Y', Ys};
-samplesWithBetaDisturbance = SystemSamples(args2{:});
+
+sys2 = srt.systems.SampledSystem('X', Xs, 'U', Us2, 'Y', Ys);
 
 x = linspace(-1.1, 1.1, 100);
 y = linspace(0, 1, 100);
@@ -75,10 +82,6 @@ xx = reshape(xx, 1, []);
 yy = reshape(yy, 1, []);
 Xt = [xx; z; yy; z; z; z];
 Ut = zeros(2,size(Xt,2));
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Define the algorithm.
-args = {'Sigma', 0.1, 'Lambda', 1};
 
 %% Algorithm
 % Initialize the algorithm.
@@ -93,24 +96,18 @@ s = linspace(-1, 1, 100);
 Xt = sampleunif(s, s);
 Ut = zeros(1, size(Xt, 2));
 
-results = SReachPoint(problem, alg, sys, Xt, Ut);
-
 % Compute the safety probabilities.
-args = {problem, samplesWithGaussianDisturbance, Xt, Ut};
-
-PrGauss = algorithm.ComputeSafetyProbabilities(args{:});
-
+resultsGuass = SReachPoint(problem, alg, sys1, Xt, Ut);
 
 % % Compute the safety probabilities.
-args = {problem, samplesWithBetaDisturbance, Xt, Ut};
-tic
-PrBeta = algorithm.ComputeSafetyProbabilities(args{:});
-toc
+resultsBeta = SReachPoint(problem, alg, sys2, Xt, Ut);
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 % View the results.
-surf(s, s, reshape(results.Pr(1, :), 100, 100), 'EdgeColor', 'none');
+surf(s, s, reshape(resultsGuass(1, :), 100, 100), 'EdgeColor', 'none');
+surf(s, s, reshape(resultsBeta(1, :), 100, 100), 'EdgeColor', 'none');
 
 
 % width = 80;

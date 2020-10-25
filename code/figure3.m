@@ -75,8 +75,6 @@ ph.EdgeColor = 'none';
 caxis([0 1]);
 view([0 90]);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 colorbar(ax1, 'off');
 ax1.Position = [30, 25, width, height];
 ax1.YLabel.Interpreter = 'latex';
