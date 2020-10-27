@@ -7,8 +7,8 @@
 % $\mathcal{T}$.
 
 N = 5;
-K = srt.Tube(N, Polyhedron('1b', [-1 -100 0 -100 -100 -100], 'ub', [1 100 0.8 100 100 100]));
-T = srt.Tube(N, Polyhedron('1b', [-1 -100 -100 -100 -100 -100], 'ub', [1 100 0.8 100 100 100]));
+K = srt.Tube(N, Polyhedron('lb', [-1 -100 0 -100 -100 -100], 'ub', [1 100 0.8 100 100 100]));
+T = srt.Tube(N, Polyhedron('lb', [-1 -100 -100 -100 -100 -100], 'ub', [1 100 0.8 100 100 100]));
 
 problem = srt.problems.FirstHitting('ConstraintTube', K, 'TargetTube', T);
 
@@ -53,11 +53,11 @@ dT = reshape(dTdT, 1, []);
 
 Xs = [X; dX; Y; dY; T; dT];
 
-Q = 10*eye(size(A,2)*N);
-R = 10*eye(size(B,2)*N);
-K = [   -0.3370   -0.6738    0.6396    1.8992    4.9544    2.0982;
-         0.3370    0.6738    0.6396    1.8992   -4.9544   -2.0982;];
-U = K*(x0-x_d);
+% Q = 10*eye(size(A,2)*N);
+% R = 10*eye(size(B,2)*N);
+% K = [   -0.3370   -0.6738    0.6396    1.8992    4.9544    2.0982;
+%          0.3370    0.6738    0.6396    1.8992   -4.9544   -2.0982;];
+% U = K*(x0-x_d);
 
 for k = 1:size(Xs,2)
     Us(:,k) = quadInputGen(60,Ts,Xs(:,k),X_d);
