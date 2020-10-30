@@ -38,7 +38,7 @@ hold on
 grid on
 plot(M, KernelEmbeddingsTime);
 ax = gca;
-ax.XLabel.String = 'Number of Samples $$M$$';
+ax.XLabel.String = 'Sample Size $$M$$';
 ax.XLabel.Interpreter = 'latex';
 ax.YLabel.String = 'Computation Time [s]';
 ax.YLabel.Interpreter = 'latex';

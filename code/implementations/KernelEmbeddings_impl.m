@@ -3,7 +3,9 @@ function results = KernelEmbeddings_impl(prob, sys, x0, u0, varargin)
 %
 %   Requires SReachTools for the problem and system definittions.
 %
-%   Usage: KERNELEMBEDDINGS_IMPL(prob, sys, x0, u0)
+%   Usage:
+%
+%       results = KERNELEMBEDDINGS_IMPL(prob, sys, x0, u0)
 %
 %   Inputs:
 %       prob    - Problem definition. This can be one of:

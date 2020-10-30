@@ -1,16 +1,7 @@
-% Double Integrator.
-
-% - Dynamic programming.
-% - KernelEmbeddings
-% - Absolute difference.
-% - KernelEmbeddingsRFF
-% - Absolute difference.
-
-
 %% Kernel Embeddings Example (First-Hitting Time Problem)
 % Kernel embeddings example showing the first-hitting time problem
 % for a double integrator system.
-
+% 
 %%
 % Specify the time horizon, the safe set $\mathcal{K}$, and the target set
 % $\mathcal{T}$.
