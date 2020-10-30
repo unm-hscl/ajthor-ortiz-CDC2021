@@ -15,10 +15,8 @@ echo 'Downloaded CVX'
 
 ### SReachTools
 #
-curl -sL https://github.com/unm-hscl/SReachTools/archive/new_structure.zip --output SReachTools.zip
-unzip -qq SReachTools.zip
-mv SReachTools-new_structure SReachTools
-rm SReachTools.zip
+git clone -n https://github.com/unm-hscl/SReachTools.git SReachTools
+(cd SReachTools && git checkout 11bff8443d034b30c75b76171674171953d4424e)
 echo 'Downloaded SReachTools'
 
 ### Setup MATLAB environment for SReachTools
