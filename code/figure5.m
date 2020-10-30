@@ -1,4 +1,16 @@
-%% Kernel Embeddings Example (Terminal-Hitting Time Problem)
+%% Generate Figure 5
+% Kernel embeddings example showing the Terminal-hitting time problem
+% for a Linear(Sys1) and Nonlinear(Sys2) Cart-Pole System.
+%
+% The computation times are obtained using Matlab's performance testing
+% framework. The algorithms are written as unit tests, and the performance
+% testing framework runs the tests 4 times to warm up the machine and then
+% between 4 and 256 times to reach a sample mean with a 0.05 relative margin of
+% error within a 0.95 confidence level.
+%
+% The results are machine-dependent, and may not match the computation times
+% obtained in the paper.
+
 % Kernel embeddings example showing the Terminal-hitting time problem
 % for a Linear(Sys1) and Nonlinear(Sys2) Cart-Pole System
 %
@@ -28,7 +40,6 @@ problem2 = srt.problems.TerminalHitting('ConstraintTube', K2, 'TargetTube', T2);
 
 %% System Definition
 % Generate input/output samples for a linear cart-pole system
-%
 
 % Load Linear cart-pole data.
 data1 = load('../data/CartPoleSamples_Linearized.mat');
@@ -71,8 +82,7 @@ Ut = zeros(1, size(Xt, 2));
 results1 = SReachPoint(problem1, alg, sys1, Xt, Ut);
 results2 = SReachPoint(problem2, alg, sys2, Xt, Ut);
 
-%%
-% View the results.
+%% Plot the results.
 
 width = 60;
 height = 60;

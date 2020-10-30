@@ -1,12 +1,23 @@
-%% Kernel Embeddings Example (First-Hitting Time Problem)
-% Kernel embeddings example showing the first-hitting time problem
-% for a double integrator system.
+%% Generate Figure 3
+% Kernel Embedding example showing the First-hitting time problem for a 
+% double integrator system. Comparison of KernelDistributionEmbedding 
+% algorithm to KernelDistributionEmbeddingRFF algorithm, and including
+% dynamic programing comparison.
+%
+% The computation times are obtained using Matlab's performance testing
+% framework. The algorithms are written as unit tests, and the performance
+% testing framework runs the tests 4 times to warm up the machine and then
+% between 4 and 256 times to reach a sample mean with a 0.05 relative margin of
+% error within a 0.95 confidence level.
+%
+% The results are machine-dependent, and may not match the computation times
+% obtained in the paper.
 % 
 %%
-% Specify the time horizon, the safe set $\mathcal{K}$, and the target set
-% $\mathcal{T}$.
-N = 5;
+% Specify the time horizon $\mathcal{N}$, the safe set $\mathcal{K}$, and
+% the target set $\mathcal{T}$.
 
+N = 5;
 K = srt.Tube(N, Polyhedron('lb', [-1 -1], 'ub', [1 1]));
 T = srt.Tube(N, Polyhedron('lb', [-0.5 -0.5], 'ub', [0.5 0.5]));
 
@@ -14,9 +25,7 @@ problem = srt.problems.FirstHitting('ConstraintTube', K, 'TargetTube', T);
 
 %% System Definition
 % Generate input/output samples for a double integrator system.
-%
-% $$x_{k+1} = A x_{k} + w_{k}, \quad w_{k} \sim \mathcal{N}(0, 0.01 I)$$
-%
+
 s = linspace(-1.1, 1.1, 50);
 X = sampleunif(s, s);
 U = zeros(1, size(X, 2));
@@ -30,9 +39,7 @@ Y = A*X + B*U + W;
 % Load the dynamic programming results for the comparison plots.
 load('../data/DynamicProgrammingFHT.mat')
 
-
-%%
-% Create a sample-based stochastic system.
+%% Create a sample-based stochastic system.
 
 sys = srt.systems.SampledSystem('X', X, 'U', U, 'Y', Y);
 
@@ -41,8 +48,8 @@ sys = srt.systems.SampledSystem('X', X, 'U', U, 'Y', Y);
 
 alg1 = srt.algorithms.KernelEmbeddings('sigma', 0.1, 'lambda', 1);
 alg2 = srt.algorithms.KernelEmbeddingsRFF('sigma', 0.1, 'lambda', 1, 'D', 15000);
-%%
-% Call the algorithm.
+
+%% Call the algorithm.
 
 s = linspace(-1, 1, 100);
 Xt = sampleunif(s, s);
@@ -51,8 +58,8 @@ Ut = zeros(1, size(Xt, 2));
 results1 = SReachPoint(problem, alg1, sys, Xt, Ut);
 results2 = SReachPoint(problem, alg2, sys, Xt, Ut);
 
-%%
-% View the results.
+%% View the results.
+
 width = 60;
 height = 60;
 

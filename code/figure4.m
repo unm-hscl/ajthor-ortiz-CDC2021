@@ -1,6 +1,18 @@
-%% Kernel Embeddings Example (First-Hitting Time Problem)
-% Kernel embeddings example showing the first-hitting time problem
-% for a 6-D quadcopter system.
+%% Generate Figure 5
+% Kernel embeddings example showing the First-hitting time problem
+% for a 6-D quadrotor system.
+%
+% The computation times are obtained using Matlab's performance testing
+% framework. The algorithms are written as unit tests, and the performance
+% testing framework runs the tests 4 times to warm up the machine and then
+% between 4 and 256 times to reach a sample mean with a 0.05 relative margin of
+% error within a 0.95 confidence level.
+%
+% The results are machine-dependent, and may not match the computation times
+% obtained in the paper.
+
+% Kernel embeddings example showing the Terminal-hitting time problem
+% for a Linear(Sys1) and Nonlinear(Sys2) Cart-Pole System
 %
 %%
 % Specify the time horizon, the safe set $\mathcal{K}$, and the target set
@@ -83,15 +95,13 @@ yy = reshape(yy, 1, []);
 Xt = [xx; z; yy; z; z; z];
 Ut = zeros(2,size(Xt,2));
 
-%%
-% Call the algorithm.
+%% Call the algorithm.
 
 resultsGauss = SReachPoint(problem, alg, sys1, Xt, Ut);
 
 resultsBeta  = SReachPoint(problem, alg, sys2, Xt, Ut);
 
-%%
-% View the results.
+%% Plot the results.
 
 width = 80;
 height = 137;
