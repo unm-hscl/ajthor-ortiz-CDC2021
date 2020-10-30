@@ -2,7 +2,7 @@
 
 Code for the paper, "SReachTools Kernel Module: Data-Driven Stochastic Reachability Using Hilbert Space Embeddings of Distributions," HSCC 2021.
 
-The code is provided in a CodeOcean capsule, located [here](https://codeocean.com/capsule/6944595/tree).
+The code is provided in a CodeOcean capsule, located [here](https://codeocean.com/capsule/3853882/tree).
 
 ## Table of Contents
 
@@ -34,7 +34,7 @@ at the [SReachTools website](https://sreachtools.github.io).
 
 * **How do I get the code?**
 The code is provided as a CodeOcean capsule, located
-[here](https://codeocean.com/capsule/6944595/tree). Alternatively, the code can
+[here](https://codeocean.com/capsule/3853882/tree). Alternatively, the code can
 be downloaded by
 [exporting](https://help.codeocean.com/en/articles/2199842-exporting-capsules-and-reproducing-results-on-your-local-machine)
 the CodeOcean capsule to your system, with repeatability instructions provided
@@ -51,7 +51,7 @@ git clone https://github.com/unm-hscl/ajthor-ortiz-HSCC2021.git
 ```
 * **How do I use the code?**
 It is recommended that the code be run from the CodeOcean capsule, located
-[here](https://codeocean.com/capsule/6944595/tree), using the 'Reproducible Run'
+[here](https://codeocean.com/capsule/3853882/tree), using the 'Reproducible Run'
 button.
 * **I just want to see the implementation.**
 Implementations of the algorithms are located [here](code/implementations/).
@@ -73,7 +73,7 @@ your system, but have no additional dependencies.
 ### Repeatability Instructions
 
 It is recommended that the code be run from the CodeOcean capsule, located
-[here](https://codeocean.com/capsule/6944595/tree). On the capsule page, click
+[here](https://codeocean.com/capsule/3853882/tree). On the capsule page, click
 'Reproducible Run' to run the code and generate all figures.
 
 If you would like to reproduce the results locally, download the CodeOcean

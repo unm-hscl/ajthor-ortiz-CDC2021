@@ -2,12 +2,12 @@
 
 Code for the paper, "SReachTools Kernel Module: Data-Driven Stochastic Reachability Using Hilbert Space Embeddings of Distributions," HSCC 2021.
 
-The code is provided in a CodeOcean capsule, located [here](https://codeocean.com/capsule/6944595/tree).
+The code is provided in a CodeOcean capsule, located [here](https://codeocean.com/capsule/3853882/tree).
 
 ### Repeatability Instructions
 
 It is recommended that the code be run from the CodeOcean capsule, located
-[here](https://codeocean.com/capsule/6944595/tree). On the capsule page, click
+[here](https://codeocean.com/capsule/3853882/tree). On the capsule page, click
 'Reproducible Run' to run the code and generate all figures.
 
 If you would like to reproduce the results locally, download the CodeOcean
