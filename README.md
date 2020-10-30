@@ -65,10 +65,10 @@ also run in any newer version of Matlab.
 * **Does the code have any dependencies?**
 The `KernelEmbeddings` and `KernelEmbeddingsRFF` algorithms require
 [SReachTools](https://sreachtools.github.io) to be downloaded and installed on
-your system, but have no additional dependencies. Other algorithms in
-[SReachTools](https://sreachtools.github.io) require [MPT](https://www.mpt3.org)
-and [CVX](http://cvxr.com), and may also require a solver such as
-[Gurobi](https://www.gurobi.com).
+your system, but have no additional dependencies.
+[SReachTools](https://sreachtools.github.io) requires
+[MPT](https://www.mpt3.org) and other algorithms may require
+[CVX](http://cvxr.com) and a solver such as [Gurobi](https://www.gurobi.com).
 
 ### Repeatability Instructions
 

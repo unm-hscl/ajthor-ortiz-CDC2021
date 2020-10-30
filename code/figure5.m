@@ -2,18 +2,7 @@
 % Kernel embeddings example showing the Terminal-hitting time problem
 % for a Linear(Sys1) and Nonlinear(Sys2) Cart-Pole System.
 %
-% The computation times are obtained using Matlab's performance testing
-% framework. The algorithms are written as unit tests, and the performance
-% testing framework runs the tests 4 times to warm up the machine and then
-% between 4 and 256 times to reach a sample mean with a 0.05 relative margin of
-% error within a 0.95 confidence level.
-%
-% The results are machine-dependent, and may not match the computation times
-% obtained in the paper.
 
-% Kernel embeddings example showing the Terminal-hitting time problem
-% for a Linear(Sys1) and Nonlinear(Sys2) Cart-Pole System
-%
 %%
 % Specify the time horizon, the safe set $\mathcal{K}$, and the target set
 % $\mathcal{T}$.

@@ -11,6 +11,7 @@
 % The results are machine-dependent, and may not match the computation times
 % obtained in the paper.
 %
+
 profileResults = runperf('tests/profile/ProfileSReachOpen.m', ...
     'Tag', 'NoGurobi');
 

@@ -10,7 +10,9 @@
 % The results are machine-dependent, and may not match the computation times
 % obtained in the paper.
 %
+
 %% Run the performance tests.
+
 profileResults = runperf('tests/profile/ProfileKernelEmbeddings.m');
 
 %% Compile the results.

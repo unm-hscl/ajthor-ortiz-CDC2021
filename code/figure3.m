@@ -1,18 +1,10 @@
 %% Generate Figure 3
-% Kernel Embedding example showing the First-hitting time problem for a 
-% double integrator system. Comparison of KernelDistributionEmbedding 
+% Kernel Embedding example showing the First-hitting time problem for a
+% double integrator system. Comparison of KernelDistributionEmbedding
 % algorithm to KernelDistributionEmbeddingRFF algorithm, and including
 % dynamic programing comparison.
 %
-% The computation times are obtained using Matlab's performance testing
-% framework. The algorithms are written as unit tests, and the performance
-% testing framework runs the tests 4 times to warm up the machine and then
-% between 4 and 256 times to reach a sample mean with a 0.05 relative margin of
-% error within a 0.95 confidence level.
-%
-% The results are machine-dependent, and may not match the computation times
-% obtained in the paper.
-% 
+
 %%
 % Specify the time horizon $\mathcal{N}$, the safe set $\mathcal{K}$, and
 % the target set $\mathcal{T}$.
@@ -58,7 +50,7 @@ Ut = zeros(1, size(Xt, 2));
 results1 = SReachPoint(problem, alg1, sys, Xt, Ut);
 results2 = SReachPoint(problem, alg2, sys, Xt, Ut);
 
-%% View the results.
+%% Plot the results.
 
 width = 60;
 height = 60;
@@ -141,7 +133,6 @@ ax5.YLabel.Interpreter = 'latex';
 ax5.YLabel.String = '$x_{2}$';
 ax5.Title.String = '(e)';
 set(ax5, 'FontSize', 8, 'Fontweight', 'bold');
-
 
 % Save the figure as 'figure3'.
 saveas(gcf, '../results/figure3.png')
